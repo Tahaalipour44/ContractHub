@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { getAll, getOne, create, update, remove } from './ContractCn.js';
+
 import IsLogin from '../../Middleware/isLogin.js';
+import { create, getAll, getOne, remove, update } from './ContractVersionCn.js';
 
 const contractVersionRouter = Router();
 

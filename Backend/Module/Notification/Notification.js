@@ -1,13 +1,12 @@
 import { Router } from 'express';
-import { getAll, getOne, create, update, remove } from './NotificationCn.js';
+
 import IsLogin from '../../Middleware/isLogin.js';
+import { create, getAll, getOne, remove } from './NotificationCn.js';
+import { update } from '../User/UserCn.js';
 
 const notificationRouter = Router();
 
-notificationRouter
-  .route('/')
-  .get(IsLogin, getAll)
-  .post(IsLogin, create);
+notificationRouter.route('/').get(IsLogin, getAll).post(IsLogin, create);
 
 notificationRouter
   .route('/:id')

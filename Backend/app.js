@@ -2,14 +2,13 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import path from 'path';
-import swaggerUi from 'swagger-ui-express';
 import { catchError, HandleERROR } from 'vanta-api';
 import { fileURLToPath } from 'url';
-import authRouter from './Module/Auth/Auth';
-import userRouter from './Module/User/User';
-import contractRouter from './Module/Contract/Contract';
-import contractVersionRouter from './Module/ContractVersion/ContractVersion';
-import partyRouter from './Module/Party/Party';
+import authRouter from './Module/Auth/Auth.js';
+import userRouter from './Module/User/User.js';
+import contractRouter from './Module/Contract/Contract.js';
+import contractVersionRouter from './Module/ContractVersion/ContractVersion.js';
+import partyRouter from './Module/Party/Party.js';
 import notificationRouter from './Module/Notification/Notification.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -31,8 +30,8 @@ app.use('/api/parties', partyRouter);
 app.use('/api/notifications', notificationRouter);
 
 // Catch incorrect routes
-app.all('*', (req, res, next) => {
-  return next(new HandleERROR('Incorrect API URL', 404));
+app.use((req, res, next) => {
+  return next(new HandleERROR('Route Not Found', 404));
 });
 app.use(catchError);
 
