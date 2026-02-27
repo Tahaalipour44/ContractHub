@@ -1,3 +1,4 @@
+// Module/User/UserMd.js
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
@@ -24,6 +25,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: [true, 'Phone number must be unique'],
       match: [/^\+?98\d{10}$|^0\d{10}$/, 'Please use a valid phone number']
+    },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user'
     }
   },
   { timestamps: true }
