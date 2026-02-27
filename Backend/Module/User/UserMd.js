@@ -1,4 +1,3 @@
-// Module/User/UserMd.js
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
@@ -12,10 +11,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Email is required'],
       unique: [true, 'Email must be unique'],
-      match: [
-        /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/,
-        'Please use a valid email address'
-      ]
+      match: [/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/, 'Please use a valid email address']
     },
     password: {
       type: String,
@@ -26,10 +22,12 @@ const UserSchema = new mongoose.Schema(
       unique: [true, 'Phone number must be unique'],
       match: [/^\+?98\d{10}$|^0\d{10}$/, 'Please use a valid phone number']
     },
-    role: {
+    name: {
       type: String,
-      enum: ['user', 'admin'],
-      default: 'user'
+      required: [true, 'Name is required']
+    },
+    national_id: {
+      type: String
     }
   },
   { timestamps: true }
